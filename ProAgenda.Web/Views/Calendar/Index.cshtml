@@ -32,18 +32,30 @@
         $("#txtDate").val(ano + "." + mes + "." + $(dia).text());
 
         var hora = dataAgora.getHours() + ':' + dataAgora.getMinutes() + ':' + dataAgora.getSeconds();
-
+        if ($(dia).hasClass('pintaCampo')) {
+            $(dia).addClass('VoltarCor');
+        } else {
+            $(dia).addClass('pintaCampo')
+        }
+      //  $(dia).css('background', '#054dfa').css('color', '#ffff')
         AbrirPopUp();
         txtPopUp.innerText = 'Dia: ' + $(dia).text() + ' mes: ' + mes + ' Ano:' + ano + ' Hora: ' + hora;
-
-
-
-
-
     }
  </script>
 <script type="text/javascript" src="@Url.Content("/Scripts/scriptAgenda.js")"></script>
    
+<style>
+    .pintaCampo {
+        background-color: #054dfa !important;
+        color: #ffffff
+    }
+    .VoltarCor {
+        background-color: #E9F0F9 !important;
+        color: #000000
+    }
+
+</style>
+
 <div class="container">
     <div class="row">
         <div class="col-md-12">
