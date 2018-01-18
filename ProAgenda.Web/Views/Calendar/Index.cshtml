@@ -6,9 +6,7 @@
    
 <script>   
     function obterParametros() {
-
         var vars = [], hash;
-
         var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
 
         for (var i = 0; i < hashes.length; i++) {
@@ -20,26 +18,17 @@
     }
 
     function salvar(dia) {
-
         var allParameter = obterParametros();   // 6
         var dataAgora = new Date();
 
-        
-
         var ano = allParameter['year'].length > 2 ? allParameter['year'] : '0' + allParameter['year'];
         var mes = allParameter['month'].length > 2 ? allParameter['month'] : '0' + allParameter['month'];
-                    
+        $(dia).css('background-color', 'red').css('color', '#ffff');
         $("#txtDate").val(ano + "." + mes + "." + $(dia).text());
-
+        txtPopUp.innerText = 'Dia: ' + $(dia).text() + ' mes: ' + mes + ' Ano:' + ano + ' Hora: ' + hora;
         var hora = dataAgora.getHours() + ':' + dataAgora.getMinutes() + ':' + dataAgora.getSeconds();
 
         AbrirPopUp();
-        txtPopUp.innerText = 'Dia: ' + $(dia).text() + ' mes: ' + mes + ' Ano:' + ano + ' Hora: ' + hora;
-
-
-
-
-
     }
  </script>
 <script type="text/javascript" src="@Url.Content("/Scripts/scriptAgenda.js")"></script>
