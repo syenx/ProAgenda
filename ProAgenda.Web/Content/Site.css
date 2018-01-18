@@ -1,0 +1,63 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+
+.popUpShadowCss {
+    opacity: 0.8;
+    background: #000000;
+    position: absolute;
+    display: none;
+    z-index: 9000;
+    display: none;
+    height: 100%;
+    width: 100%
+}
+
+.popUpCss {
+    position: absolute;
+    z-index: 9001;
+    background-color: #428bca;
+    padding: 0 0 0 0;
+    height: 200px;
+    width:  563px;
+    margin: 136px 0 0 30%;
+    display: none;
+    border-radius: 6px;
+}
+
+.cssTextoPopUp {
+    color: #000;
+    font-family: inherit;
+    margin: 6px 0 0 6px;
+}
+
+.divInterna {
+    border-radius: 6px;
+    color: #ffffff;
+    height: 182px;
+    width: 545px;
+    background: #E9F0F9;
+    margin: 8px 0 0 8px;
+}
