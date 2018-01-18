@@ -5,6 +5,11 @@
 
    
 <script>   
+
+    $(document).ready(function () {
+        alert('Teste')
+    });
+
     function obterParametros() {
 
         var vars = [], hash;
@@ -20,16 +25,13 @@
     }
 
     function salvar(dia) {
-
+              
         var allParameter = obterParametros();   // 6
         var dataAgora = new Date();
-
-        
-
+ 
         var ano = allParameter['year'].length > 2 ? allParameter['year'] : '0' + allParameter['year'];
         var mes = allParameter['month'].length > 2 ? allParameter['month'] : '0' + allParameter['month'];
-                    
-        $("#txtDate").val(ano + "." + mes + "." + $(dia).text());
+        
 
         var hora = dataAgora.getHours() + ':' + dataAgora.getMinutes() + ':' + dataAgora.getSeconds();
         if ($(dia).hasClass('pintaCampo')) {
@@ -37,7 +39,7 @@
         } else {
             $(dia).addClass('pintaCampo')
         }
-      //  $(dia).css('background', '#054dfa').css('color', '#ffff')
+     
         AbrirPopUp();
         txtPopUp.innerText = 'Dia: ' + $(dia).text() + ' mes: ' + mes + ' Ano:' + ano + ' Hora: ' + hora;
     }
