@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<script>
+    $(document).ready(function () {
+        $('#calendar').fullCalendar({
+            theme: true,
+            header: {
+                left: '',
+                center: '',
+                right: ''
+            },
+            defaultView: 'agendaDay',
+            editable: false,
+            events: "/Calendar/GetEvents/"
+        });
+    });
+
+</script>
+
+<div id="calendar"></div>
+
