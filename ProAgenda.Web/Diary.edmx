@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="FullCalendarMVC_DemoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="DiaryContainer.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AppointmentDiary">
           <Key>
             <PropertyRef Name="ID" />
@@ -16,14 +16,14 @@
           <Property Name="AppointmentLength" Type="int" Nullable="false" />
           <Property Name="StatusENUM" Type="int" Nullable="false" />
         </EntityType>
-        <EntityContainer Name="FullCalendarMVC_DemoModelStoreContainer">
+        <EntityContainer Name="DiaryContainerStoreContainer">
           <EntitySet Name="AppointmentDiary" EntityType="Self.AppointmentDiary" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="FullCalendarMVC_DemoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="DiaryContainer" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="AppointmentDiary">
           <Key>
             <PropertyRef Name="ID" />
@@ -36,16 +36,16 @@
           <Property Name="StatusENUM" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityContainer Name="Diary" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="AppointmentDiaries" EntityType="Self.AppointmentDiary" />
+          <EntitySet Name="AppointmentDiary" EntityType="Self.AppointmentDiary" />
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="FullCalendarMVC_DemoModelStoreContainer" CdmEntityContainer="Diary">
-          <EntitySetMapping Name="AppointmentDiaries">
-            <EntityTypeMapping TypeName="FullCalendarMVC_DemoModel.AppointmentDiary">
+        <EntityContainerMapping StorageEntityContainer="DiaryContainerStoreContainer" CdmEntityContainer="Diary">
+          <EntitySetMapping Name="AppointmentDiary">
+            <EntityTypeMapping TypeName="DiaryContainer.AppointmentDiary">
               <MappingFragment StoreEntitySet="AppointmentDiary">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
@@ -70,9 +70,9 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
-        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>
     </Options>

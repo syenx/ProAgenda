@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProAgenda.Web.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,82 +9,62 @@ namespace ProAgenda.Web.Controllers
 {
     public class CalendarDayController : Controller
     {
-        // GET: CalendarDay
         public ActionResult Index()
         {
             return View();
         }
 
-        // GET: CalendarDay/Details/5
-        public ActionResult Details(int id)
+        public string Init()
         {
-            return View();
+            bool rslt = Utils.InitialiseDiary();
+            return rslt.ToString();
         }
 
-        // GET: CalendarDay/Create
-        public ActionResult Create()
+        public void UpdateEvent(int id, string NewEventStart, string NewEventEnd)
         {
-            return View();
+            DiaryEvent.UpdateDiaryEvent(id, NewEventStart, NewEventEnd);
         }
 
-        // POST: CalendarDay/Create
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add insert logic here
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+        public bool SaveEvent(string Title, string NewEventDate, string NewEventTime, string NewEventDuration)
+        {
+            return DiaryEvent.CreateNewEvent(Title, NewEventDate, NewEventTime, NewEventDuration);
         }
 
-        // GET: CalendarDay/Edit/5
-        public ActionResult Edit(int id)
+        public JsonResult GetDiarySummary(double start, double end)
         {
-            return View();
+            var ApptListForDate = DiaryEvent.LoadAppointmentSummaryInDateRange(start, end);
+            var eventList = from e in ApptListForDate
+                            select new
+                            {
+                                id = e.ID,
+                                title = e.Title,
+                                start = e.StartDateString,
+                                end = e.EndDateString,
+                                someKey = e.SomeImportantKeyID,
+                                allDay = false
+                            };
+            var rows = eventList.ToArray();
+            return Json(rows, JsonRequestBehavior.AllowGet);
         }
 
-        // POST: CalendarDay/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public JsonResult GetDiaryEvents(double start, double end)
         {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: CalendarDay/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: CalendarDay/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            var ApptListForDate = DiaryEvent.LoadAllAppointmentsInDateRange(start, end);
+            var eventList = from e in ApptListForDate
+                            select new
+                            {
+                                id = e.ID,
+                                title = e.Title,
+                                start = e.StartDateString,
+                                end = e.EndDateString,
+                                color = e.StatusColor,
+                                className = e.ClassName,
+                                someKey = e.SomeImportantKeyID,
+                                allDay = false
+                            };
+            var rows = eventList.ToArray();
+            return Json(rows, JsonRequestBehavior.AllowGet);
         }
     }
 }
