@@ -1,4 +1,39 @@
-﻿body {
+﻿
+.ENQUIRY {
+    
+    background-color: #FF9933;
+    border-color: #C0C0C0; 
+    color: White;
+    background-position: 1px 1px;
+    background-repeat: no-repeat;
+    background-image: url('Bubble.png');
+    padding-left: 50px;
+}
+
+.BOOKED {
+    background-color: #33CCFF;
+    border-color: #C0C0C0;
+    color: White; /* text color */
+    background-position: 1px 1px;
+    background-repeat: no-repeat;
+    background-image: url('ok.png');
+    padding-left: 50px;
+}
+
+.CONFIRMED {
+    background-color: #33CC33;
+    border-color: #C0C0C0;
+    color: White; /* text color */
+    background-position: 1px 1px;
+    background-repeat: no-repeat;
+    background-image: url('Money.png');
+    padding-left: 50px;
+}
+
+h2 {
+font-size: 20px !important;  /* !important added to force override of any other h2 in CSS*/
+}
+body {
     padding-top: 50px;
     padding-bottom: 20px;
 }
@@ -40,8 +75,8 @@ textarea {
     z-index: 9001;
     background-color: #428bca;
     padding: 0 0 0 0;
-    height: 200px;
-    width:  563px;
+    height: 347px;
+    width: 563px;
     margin: 136px 0 0 30%;
     display: none;
     border-radius: 6px;
@@ -56,7 +91,7 @@ textarea {
 .divInterna {
     border-radius: 6px;
     color: #ffffff;
-    height: 182px;
+    height: 317px;
     width: 545px;
     background: #E9F0F9;
     margin: 8px 0 0 8px;
