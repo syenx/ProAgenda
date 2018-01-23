@@ -132,34 +132,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AppointmentDiary.cs">
-      <DependentUpon>Diary.tt</DependentUpon>
-    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CalendarController.cs" />
     <Compile Include="Controllers\CalendarDayController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Diary.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Diary.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Diary.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Diary.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Diary.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Diary.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AppointmentDiary.cs" />
     <Compile Include="Models\DiaryEvents.cs" />
+    <Compile Include="Models\TesteBanco.cs" />
     <Compile Include="Models\Utils.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Shared.cs" />
@@ -234,16 +218,6 @@
     <Content Include="Content\themes\base\minified\jquery.ui.slider.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
-    <Content Include="Diary.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Diary.edmx</DependentUpon>
-      <LastGenOutput>Diary.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Diary.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Diary.edmx</DependentUpon>
-      <LastGenOutput>Diary.cs</LastGenOutput>
-    </Content>
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -266,13 +240,6 @@
     <Content Include="Scripts\bootstrap-tooltip.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Diary.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Diary.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Diary.edmx.diagram">
-      <DependentUpon>Diary.edmx</DependentUpon>
-    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <None Include="Scripts\jquery-3.2.1.intellisense.js" />
     <Content Include="Scripts\fullcalendar.helper.js" />
