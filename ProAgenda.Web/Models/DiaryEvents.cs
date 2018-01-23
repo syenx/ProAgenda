@@ -28,7 +28,7 @@ namespace ProAgenda.Web
             {
 
 
-                var rslt = ent.AppointmentDiary.Where(s => s.DateTimeScheduled >= fromDate && System.Data.Entity.DbFunctions.AddMinutes(s.DateTimeScheduled, s.AppointmentLength) <= toDate);
+                var rslt = ent.AppointmentDiaries.Where(s => s.DateTimeScheduled >= fromDate && System.Data.Entity.DbFunctions.AddMinutes(s.DateTimeScheduled, s.AppointmentLength) <= toDate);
 
 
                 List<DiaryEvent> result = new List<DiaryEvent>();
@@ -61,7 +61,7 @@ namespace ProAgenda.Web
             var toDate = ConvertFromUnixTimestamp(end);
             using (DiaryContainer ent = new DiaryContainer())
             {
-                var rslt = ent.AppointmentDiary.Where(s => s.DateTimeScheduled >= fromDate && System.Data.Entity.DbFunctions.AddMinutes(s.DateTimeScheduled, s.AppointmentLength) <= toDate)
+                var rslt = ent.AppointmentDiaries.Where(s => s.DateTimeScheduled >= fromDate && System.Data.Entity.DbFunctions.AddMinutes(s.DateTimeScheduled, s.AppointmentLength) <= toDate)
                                                         .GroupBy(s => System.Data.Entity.DbFunctions.TruncateTime(s.DateTimeScheduled))
                                                         .Select(x => new { DateTimeScheduled = x.Key, Count = x.Count() });
 
@@ -90,7 +90,7 @@ namespace ProAgenda.Web
             // EventStart comes ISO 8601 format, eg:  "2000-01-10T10:00:00Z" - need to convert to DateTime
             using (DiaryContainer ent = new DiaryContainer())
             {
-                var rec = ent.AppointmentDiary.FirstOrDefault(s => s.ID == id);
+                var rec = ent.AppointmentDiaries.FirstOrDefault(s => s.ID == id);
                 if (rec != null)
                 {
                     DateTime DateTimeStart = DateTime.Parse(NewEventStart, null, DateTimeStyles.RoundtripKind).ToLocalTime(); // and convert offset to localtime
@@ -123,7 +123,7 @@ namespace ProAgenda.Web
                 rec.Title = Title;
                 rec.DateTimeScheduled = DateTime.ParseExact(NewEventDate + " " + NewEventTime, "dd/MM/yyyy HH:mm", CultureInfo.InvariantCulture);
                 rec.AppointmentLength = Int32.Parse(NewEventDuration);
-                ent.AppointmentDiary.Add(rec);
+                ent.AppointmentDiaries.Add(rec);
                 ent.SaveChanges();
             }
             catch (Exception)

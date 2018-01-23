@@ -29,7 +29,7 @@ namespace ProAgenda.Web.Models
                     else item.DateTimeScheduled = GetRandomAppointmentTime(false, false);
                 }
                 item.AppointmentLength = GetRandomValue(1,5) * 15; // appoiment length in blocks of fifteen minutes in this demo
-                ent.AppointmentDiary.Add(item);
+                ent.AppointmentDiaries.Add(item);
                 ent.SaveChanges();
             }
             }
@@ -38,7 +38,7 @@ namespace ProAgenda.Web.Models
                 return false;
             }
 
-            return ent.AppointmentDiary.Count() > 0;        
+            return ent.AppointmentDiaries.Count() > 0;        
         }
 
         public static int GetRandomValue(int LowerBound, int UpperBound) {

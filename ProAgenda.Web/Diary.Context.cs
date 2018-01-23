@@ -25,6 +25,6 @@ namespace ProAgenda.Web
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<AppointmentDiary> AppointmentDiary { get; set; }
+        public virtual DbSet<AppointmentDiary> AppointmentDiaries { get; set; }
     }
 }
