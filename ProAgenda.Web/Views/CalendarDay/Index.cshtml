@@ -2,7 +2,7 @@
 @{
     ViewBag.Title = "Index";
 }
-
+<script src="~/Scripts/locale/pt-br.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
 
@@ -21,6 +21,7 @@
             allDaySlot: false,
             selectable: true,
             slotMinutes: 15,
+            
             events: '/CalendarDay/GetDiaryEvents/',
             eventClick: function (calEvent, jsEvent, view) {
                 alert('You clicked on event id: ' + calEvent.id
@@ -47,8 +48,6 @@
                     revertFunc();
                 }
             },
-
-
 
             dayClick: function (date, allDay, jsEvent, view) {
                 $('#eventTitle').val("");

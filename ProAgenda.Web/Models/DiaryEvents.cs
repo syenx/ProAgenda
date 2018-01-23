@@ -10,7 +10,6 @@ namespace ProAgenda.Web
 {
     public class DiaryEvent
     {
-
         public int ID;
         public string Title;
         public int SomeImportantKeyID;
@@ -20,13 +19,12 @@ namespace ProAgenda.Web
         public string StatusColor;
         public string ClassName;
 
-
         public static List<DiaryEvent> LoadAllAppointmentsInDateRange(double start, double end)
         {
             var fromDate = ConvertFromUnixTimestamp(start);
             var toDate = ConvertFromUnixTimestamp(end);
 
-            var rslt = TesteBanco.GetToListAgenda();
+            var rslt = Banco.SelectAllList();
        
 
             List<DiaryEvent> result = new List<DiaryEvent>();
@@ -50,15 +48,14 @@ namespace ProAgenda.Web
 
 
         }
-
-
+        
         public static List<DiaryEvent> LoadAppointmentSummaryInDateRange(double start, double end)
         {
 
             var fromDate = ConvertFromUnixTimestamp(start);
             var toDate = ConvertFromUnixTimestamp(end);
         
-            var rslt = TesteBanco.GetAgendas(start, end);
+            var rslt = Banco.GetAgendas(start, end);
 
             List<DiaryEvent> result = new List<DiaryEvent>();
             int i = 0;
@@ -83,9 +80,8 @@ namespace ProAgenda.Web
         public static void UpdateDiaryEvent(int id, string NewEventStart, string NewEventEnd)
         {
             // EventStart comes ISO 8601 format, eg:  "2000-01-10T10:00:00Z" - need to convert to DateTime
-            TesteBanco.UpdateAgenda(id, NewEventStart, NewEventEnd);
+            Banco.UpdateAgenda(id, NewEventStart, NewEventEnd);
         }
-
 
         private static DateTime ConvertFromUnixTimestamp(double timestamp)
         {
@@ -93,12 +89,9 @@ namespace ProAgenda.Web
             return origin.AddSeconds(timestamp);
         }
 
-       
-
-
         public static bool CreateNewEvent(string Title, string NewEventDate, string NewEventTime, string NewEventDuration)
         {
-            TesteBanco.CreateNewAgenda(Title, NewEventDate, NewEventTime, NewEventDuration);
+            Banco.CreateNewAgenda(Title, NewEventDate, NewEventTime, NewEventDuration);
             return true;
         }
     }

@@ -143,7 +143,7 @@
     </Compile>
     <Compile Include="Models\AppointmentDiary.cs" />
     <Compile Include="Models\DiaryEvents.cs" />
-    <Compile Include="Models\TesteBanco.cs" />
+    <Compile Include="Models\Banco.cs" />
     <Compile Include="Models\Utils.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Shared.cs" />
@@ -258,6 +258,7 @@
     <Content Include="Scripts\jquery-3.2.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.2.1.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-ui-1.8.24.js" />
     <Content Include="Scripts\jquery-ui-1.8.24.min.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />

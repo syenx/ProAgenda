@@ -9,23 +9,24 @@ namespace ProAgenda.Web
         {
             bundles.Add(new ScriptBundle("~/bundles/scripts").Include(
                         "~/Scripts/jquery-{version}.js",
-                        // needed for drag/move events in fullcalendar
+                        "~/Scripts/fullcalendar.js",
+                        "~/Scripts/scriptAgenda.js",
                         "~/Scripts/jquery-ui-{version}.js",
                         "~/Scripts/bootstrap.js",
-                        "~/Scripts/bootstrap-modal.js",
-                        "~/Scripts/locale/pt-br.js"
+                        "~/Scripts/bootstrap-modal.js"
                         ));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
-                        "~/Scripts/jquery.unobtrusive*",
-                        "~/Scripts/jquery.validate*"));
+                        "~/Scripts/jquery.unobtrusive.ajax.js",
+                        "~/Scripts/jquery.validate.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                     "~/Content/site.css",
-                    "~/Content/bootstrap.css"
+                    "~/Content/bootstrap.css",
+                    "~/Content/fullcalendar.css"
                     ));
 
             bundles.Add(new StyleBundle("~/Content/themes/base/css").Include(
