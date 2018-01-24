@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
+using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using System.Web;
@@ -12,9 +14,9 @@ namespace ProAgenda.Web.Models
 
         public static string ConectionString()
         {
-            return @"Data Source=NBBV022006;Initial Catalog=FullCalendarMVC_Demo;Integrated Security=True";
+            return @"Data Source=SYENX;Initial Catalog=FullCalendarMVC_Demo;Integrated Security=True;MultipleActiveResultSets=True;Application Name=EntityFramework";
 
-          //  return @"Data Source=SYENX;Initial Catalog=FullCalendarMVC_Demo;Integrated Security=True;MultipleActiveResultSets=True;Application Name=EntityFramework";
+            //  return @"Data Source=SYENX;Initial Catalog=FullCalendarMVC_Demo;Integrated Security=True;MultipleActiveResultSets=True;Application Name=EntityFramework;Application Name=EntityFramework";
         }
 
         public static List<AppointmentDiary> SelectAllList()
@@ -49,8 +51,9 @@ namespace ProAgenda.Web.Models
         {
             SqlConnection con = new SqlConnection(ConectionString());
             con.Open();
-            SqlCommand cmd = new SqlCommand("SELECT * FROM AppointmentDiary WHERE SomeImportantKey BETWEEN " + start + " AND " + end + "; ", con);
-            
+            SqlCommand cmd = new SqlCommand("SELECT * FROM AppointmentDiary ", con);
+            //cmd.Parameters.Add("@start", SqlDbType.Int).Value = start;
+            //cmd.Parameters.Add("@end", SqlDbType.Int).Value = end;
             var agends = new List<AppointmentDiary>();
 
             using (var reader = cmd.ExecuteReader())
@@ -74,9 +77,10 @@ namespace ProAgenda.Web.Models
         public static void UpdateAgenda(int id, string NewEventStart, string NewEventEnd)
         {
             SqlConnection con = new SqlConnection(ConectionString());
+            con.Close();
             con.Open();
             SqlCommand cmmd = new SqlCommand("UPDATE [dbo].[AppointmentDiary]   ,[DateTimeScheduled] = "+ NewEventStart + "      ,[StatusENUM] = "+ NewEventStart + " WHERE ID = "+id+"", con);
-            con.Close();
+            
             cmmd.ExecuteNonQuery();
           
         }
@@ -84,11 +88,22 @@ namespace ProAgenda.Web.Models
 
         public static void CreateNewAgenda(string Title, string NewEventDate, string NewEventTime, string NewEventDuration)
         {
+
+            NewEventDate.Replace('/', '-') ;
+            var duração = NewEventDuration;
+            var data = NewEventDate + " " + NewEventTime;
+
             SqlConnection con = new SqlConnection(ConectionString());
-            con.Open();
-            SqlCommand cmmd = new SqlCommand("INSERT INTO [dbo].[AppointmentDiary] ([Title] ,[SomeImportantKey] ,[DateTimeScheduled]  ,[AppointmentLength] ,[StatusENUM]) VALUES   ("+Title+" , 1, "+ NewEventDate + ", "+ NewEventTime + ", "+ NewEventDuration + "   ", con);
             con.Close();
-            cmmd.ExecuteNonQuery();
+            
+            con.Open();
+            SqlCommand cmd = new SqlCommand("INSERT AppointmentDiary VALUES (@Title ,1 ,@DateTimeScheduled , @AppointmentLength , @StatusENUM) ;", con );
+            cmd.Parameters.Add("@Title", SqlDbType.VarChar, 255).Value = Title;
+            cmd.Parameters.Add("@DateTimeScheduled", SqlDbType.DateTime).Value = data;
+            cmd.Parameters.Add("@AppointmentLength", SqlDbType.Int).Value = int.Parse(duração);
+            cmd.Parameters.Add("@StatusENUM", SqlDbType.Int).Value = 1;
+
+            cmd.ExecuteNonQuery();
 
         }
 
